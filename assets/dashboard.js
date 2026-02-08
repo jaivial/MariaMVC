@@ -27,6 +27,7 @@ const refs = {
   periodBtn: document.getElementById('periodBtn'),
   exportBtn: document.getElementById('exportBtn'),
   totalBalance: document.getElementById('totalBalance'),
+  balanceDelta: document.getElementById('balanceDelta'),
   incomeMetric: document.getElementById('incomeMetric'),
   expenseMetric: document.getElementById('expenseMetric'),
   netMetric: document.getElementById('netMetric'),
@@ -51,38 +52,40 @@ const periodCutoff = (days) => {
 const filteredTx = () => {
   const q = refs.searchInput.value.trim().toLowerCase();
   const cutoff = periodCutoff(currentPeriod);
-  return transactions.filter((t) => t.date >= cutoff && (`${t.name} ${t.method}`.toLowerCase().includes(q)));
+  return transactions.filter((t) => t.date >= cutoff && `${t.name} ${t.method}`.toLowerCase().includes(q));
 };
 
 const persist = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
 
 const renderBars = (txs) => {
   refs.bars.innerHTML = '';
-  const buckets = Array.from({ length: 20 }, () => ({ in: 0, out: 0 }));
+  const buckets = Array.from({ length: 12 }, () => ({ in: 0, out: 0 }));
+
   txs.forEach((t, i) => {
-    const b = buckets[i % 20];
-    if (t.type === 'income') b.in += t.amount;
-    else b.out += t.amount;
+    const bucket = buckets[i % buckets.length];
+    if (t.type === 'income') bucket.in += t.amount;
+    else bucket.out += t.amount;
   });
-  const max = Math.max(1, ...buckets.map((b) => Math.max(b.in, b.out)));
-  buckets.forEach((b) => {
+
+  const max = Math.max(1, ...buckets.map((bucket) => Math.max(bucket.in, bucket.out)));
+  buckets.forEach((bucket) => {
     const inBar = document.createElement('div');
     inBar.className = 'bar in';
-    inBar.style.height = `${Math.max(6, (b.in / max) * 100)}%`;
+    inBar.style.height = `${Math.max(6, (bucket.in / max) * 100)}%`;
     refs.bars.appendChild(inBar);
+
     const outBar = document.createElement('div');
     outBar.className = 'bar out';
-    outBar.style.height = `${Math.max(6, (b.out / max) * 100)}%`;
+    outBar.style.height = `${Math.max(6, (bucket.out / max) * 100)}%`;
     refs.bars.appendChild(outBar);
   });
 };
 
-const renderKPIs = (income, expense) => {
-  const net = income - expense;
+const renderKPIs = (income, expense, net) => {
   refs.kpis.innerHTML = `
-    <article class="card kpi"><h5>Business Account</h5><p>${formatCurrency(income * 0.72)}</p><small>Income leverage</small></article>
-    <article class="card kpi"><h5>Total Saving</h5><p>${formatCurrency(net * 0.31)}</p><small>Net reserve ratio</small></article>
-    <article class="card kpi"><h5>Tax Reserve</h5><p>${formatCurrency(income * 0.19)}</p><small>Estimated obligation</small></article>
+    <article class="card kpi"><h5>Business Account</h5><p>${formatCurrency(income * 0.72)}</p><small>Last ${currentPeriod} days</small></article>
+    <article class="card kpi"><h5>Total Saving</h5><p>${formatCurrency(Math.max(0, net * 0.31))}</p><small>Last ${currentPeriod} days</small></article>
+    <article class="card kpi"><h5>Tax Reserve</h5><p>${formatCurrency(income * 0.19)}</p><small>Last ${currentPeriod} days</small></article>
   `;
 };
 
@@ -91,31 +94,38 @@ const renderTable = (txs) => {
     .slice()
     .reverse()
     .slice(0, 8)
-    .map((t) => `
+    .map(
+      (t) => `
       <div class="row">
         <span>${t.name}</span>
         <span class="${t.type === 'expense' ? 'neg' : ''}">${t.type === 'expense' ? '-' : ''}${formatCurrency(t.amount)}</span>
         <span><span class="badge ${t.status === 'Success' ? 'success' : 'pending'}">${t.status}</span></span>
         <span>${t.method}</span>
       </div>
-    `)
+    `,
+    )
     .join('');
 };
 
 const render = () => {
   const txs = filteredTx();
-  const income = txs.filter((t) => t.type === 'income').reduce((a, t) => a + t.amount, 0);
-  const expense = txs.filter((t) => t.type === 'expense').reduce((a, t) => a + t.amount, 0);
+  const income = txs.filter((t) => t.type === 'income').reduce((acc, t) => acc + t.amount, 0);
+  const expense = txs.filter((t) => t.type === 'expense').reduce((acc, t) => acc + t.amount, 0);
   const net = income - expense;
+  const base = 320000;
 
-  refs.totalBalance.textContent = formatCurrency(net + 320000);
+  refs.totalBalance.textContent = formatCurrency(net + base);
+  const delta = ((net / Math.max(1, income + expense)) * 100).toFixed(1);
+  refs.balanceDelta.textContent = `${delta >= 0 ? '+' : ''}${delta}%`;
+  refs.balanceDelta.style.color = delta >= 0 ? '#41df99' : '#ff9bb4';
+
   refs.incomeMetric.textContent = formatCurrency(income);
   refs.expenseMetric.textContent = formatCurrency(expense);
   refs.netMetric.textContent = formatCurrency(net);
   refs.cardBalance.textContent = formatCurrency(Math.max(0, net * 0.36 + 3500));
 
   renderBars(txs);
-  renderKPIs(income, expense);
+  renderKPIs(income, expense, net);
   renderTable(txs);
 };
 
@@ -131,9 +141,10 @@ refs.toggleFormBtn.addEventListener('click', () => {
   refs.addFormWrap.hidden = !refs.addFormWrap.hidden;
 });
 
-refs.movementForm.addEventListener('submit', (e) => {
-  e.preventDefault();
+refs.movementForm.addEventListener('submit', (event) => {
+  event.preventDefault();
   const data = new FormData(refs.movementForm);
+
   transactions.push({
     name: String(data.get('name')),
     type: String(data.get('type')),
@@ -142,6 +153,7 @@ refs.movementForm.addEventListener('submit', (e) => {
     date: new Date().toISOString().slice(0, 10),
     status: 'Success',
   });
+
   persist();
   refs.movementForm.reset();
   refs.addFormWrap.hidden = true;
