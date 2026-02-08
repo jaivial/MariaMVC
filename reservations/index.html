@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservas | Aurelia Fuego & Mar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <style>
+      .form { max-width: 780px; margin-top: 1.2rem; display: grid; gap: .9rem; }
+      .row { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: .9rem; }
+      label { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+      input, select, textarea {
+        width: 100%; margin-top: .35rem; padding: .9rem .95rem;
+        background: rgba(255,255,255,.02); border: 1px solid var(--line); color: var(--text);
+      }
+      textarea { min-height: 120px; resize: vertical; }
+      @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <header class="site-header"><div class="header-inner"><a class="brand" href="../">Aurelia</a><nav class="nav"><a href="../">Inicio</a><a href="../menu/">Menú</a><a href="../about/">Nuestra historia</a><a class="active" href="../reservations/">Reservas</a></nav></div></header>
+
+    <section class="hero" style="min-height:62vh;">
+      <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1800&q=80')"></div>
+      <div class="hero-content">
+        <p class="eyebrow reveal">Book your table</p>
+        <h1 class="reveal">Reserva tu experiencia Aurelia</h1>
+        <p class="lead reveal">Completa el formulario y te confirmaremos disponibilidad por correo en menos de 2 horas.</p>
+      </div>
+    </section>
+
+    <section class="section"><div class="section-inner">
+      <h2 class="reveal">Formulario de reserva</h2>
+      <form class="form reveal">
+        <div class="row">
+          <label>Nombre completo<input type="text" placeholder="Tu nombre" /></label>
+          <label>Email<input type="email" placeholder="tu@email.com" /></label>
+        </div>
+        <div class="row">
+          <label>Fecha<input type="date" /></label>
+          <label>Hora<select><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option></select></label>
+        </div>
+        <div class="row">
+          <label>Personas<select><option>2</option><option>3</option><option>4</option><option>5+</option></select></label>
+          <label>Tipo de experiencia<select><option>A la carta</option><option>Menú degustación</option><option>Mesa privada</option></select></label>
+        </div>
+        <label>Notas adicionales<textarea placeholder="Alergias, celebraciones o preferencias"></textarea></label>
+        <button class="btn" type="button">Enviar solicitud</button>
+      </form>
+    </div></section>
+
+    <footer class="footer"><span>Tel. +34 93 000 00 00</span><span>reservas@aureliarestaurant.com</span></footer>
+    <script src="../assets/script.js"></script>
+  </body>
+</html>
