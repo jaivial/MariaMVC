@@ -10,12 +10,10 @@
     <link rel="stylesheet" href="../assets/styles.css" />
   </head>
   <body>
-    <header class="site-header"><div class="header-inner"><a class="brand" href="../">Aurelia</a><nav class="nav"><a href="../">Inicio</a><a href="../menu/">Menú</a><a class="active" href="../about/">Nuestra historia</a><a href="../reservations/">Reservas</a><a href="../dashboard/">Dashboard</a></nav></div></header>
+    <header class="site-header"><div class="header-inner"><a class="brand" href="../">Aurelia</a><nav class="nav"><a href="../">Inicio</a><a href="../menu/">Menú</a><a class="active" href="../about/">Nuestra historia</a><a href="../reservations/">Reservas</a></nav></div></header>
 
     <section class="hero" style="min-height:68vh;">
       <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=1800&q=80')"></div>
-      <canvas id="three-hero-canvas" aria-hidden="true"></canvas>
-      <div class="parallax-layer two" data-rellax-speed="-2"></div>
       <div class="hero-content">
         <p class="eyebrow reveal">Equipo y filosofía</p>
         <h1 class="reveal">Cocina honesta con mirada contemporánea</h1>
@@ -24,7 +22,7 @@
     </section>
 
     <section class="section"><div class="section-inner split">
-      <div class="panel reveal"><img class="panel-image parallax-image" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1400&q=80" alt="Equipo de cocina" /></div>
+      <div class="panel reveal"><div class="panel-image" style="background-image:url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1400&q=80')"></div></div>
       <div class="reveal">
         <h2>Nuestra historia</h2>
         <p>Desde 2019 trabajamos con una red de productores de proximidad: pescadores de costa, huertas regenerativas y pequeñas bodegas naturales.</p>
@@ -39,9 +37,6 @@
     </div></div></section>
 
     <footer class="footer"><span>Miércoles a domingo · 19:00—00:00</span><a href="../reservations/">Reservar</a></footer>
-    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.6.2/dist/simpleParallax.min.js"></script>
     <script src="../assets/script.js"></script>
   </body>
 </html>
