@@ -34,58 +34,67 @@
 
         <main class="main">
           <div class="toolbar">
-            <div class="search">🔎 Search</div>
-            <div class="filters"><button class="pill">18 Oct 2024 - 18 Nov 2024</button><button class="pill">Last 30 days</button><button class="pill">Export</button></div>
+            <input id="searchInput" class="search" type="search" placeholder="🔎 Search contact or method" />
+            <div class="filters">
+              <button class="pill" id="periodBtn" type="button">Last 30 days</button>
+              <button class="pill" id="exportBtn" type="button">Export JSON</button>
+            </div>
           </div>
 
           <section class="balance">
             <div>
               <span>Total Balance</span>
-              <h2>€ 320.845,20</h2>
+              <h2 id="totalBalance">€ 0,00</h2>
             </div>
-            <div class="actions"><button class="btn green">+ Add</button><button class="btn soft">↑ Send</button><button class="btn soft">↻ Request</button></div>
+            <div class="actions">
+              <button class="btn green" id="toggleFormBtn" type="button">+ Add movement</button>
+              <button class="btn soft" id="seedBtn" type="button">Reset demo data</button>
+            </div>
+          </section>
+
+          <section class="card add-form" id="addFormWrap" hidden>
+            <h3>Add movement</h3>
+            <form id="movementForm" class="form-grid">
+              <input required name="name" placeholder="Contact name" />
+              <select name="type" required><option value="income">Income</option><option value="expense">Expense</option></select>
+              <input required name="amount" type="number" step="0.01" min="1" placeholder="Amount" />
+              <select name="method" required><option>Credit Card</option><option>Bank Transfer</option><option>VISA</option><option>Cash</option></select>
+              <button class="btn green" type="submit">Save</button>
+            </form>
           </section>
 
           <section class="card chart-card">
             <div>
               <div class="chart-title">Cash Flow</div>
-              <div class="bars">
-                <div class="bar in" style="height:20%"></div><div class="bar in" style="height:48%"></div><div class="bar out" style="height:26%"></div><div class="bar in" style="height:36%"></div><div class="bar out" style="height:12%"></div>
-                <div class="bar in" style="height:17%"></div><div class="bar out" style="height:21%"></div><div class="bar in" style="height:57%"></div><div class="bar in" style="height:66%"></div><div class="bar out" style="height:8%"></div>
-                <div class="bar in" style="height:43%"></div><div class="bar out" style="height:19%"></div><div class="bar in" style="height:35%"></div><div class="bar out" style="height:14%"></div><div class="bar in" style="height:18%"></div>
-                <div class="bar in" style="height:41%"></div><div class="bar out" style="height:22%"></div><div class="bar in" style="height:49%"></div><div class="bar out" style="height:16%"></div><div class="bar in" style="height:20%"></div>
-              </div>
+              <div id="bars" class="bars" aria-label="Cash flow bars"></div>
             </div>
             <div class="stat">
-              <div class="metric"><h4>Income</h4><p>€ 12.378,20</p></div>
-              <div class="metric"><h4>Expense</h4><p>€ 5.788,21</p></div>
+              <div class="metric"><h4>Income</h4><p id="incomeMetric">€ 0,00</p></div>
+              <div class="metric"><h4>Expense</h4><p id="expenseMetric">€ 0,00</p></div>
+              <div class="metric"><h4>Net</h4><p id="netMetric">€ 0,00</p></div>
             </div>
           </section>
 
-          <section class="grid3">
-            <article class="card kpi"><h5>Business Account</h5><p>€ 8.672,20</p><small>+16.0% vs last period</small></article>
-            <article class="card kpi"><h5>Total Saving</h5><p>€ 3.765,35</p><small>-8.2% vs last period</small></article>
-            <article class="card kpi"><h5>Tax Reserve</h5><p>€ 14.376,16</p><small>+35.2% vs last period</small></article>
-          </section>
+          <section class="grid3" id="kpis"></section>
 
           <section class="bottom">
             <article class="card table">
               <h3>Recent Activity</h3>
-              <div class="row"><strong>TYPE</strong><strong>AMOUNT</strong><strong>STATUS</strong><strong>METHOD</strong></div>
-              <div class="row"><span>Theo Lawrence</span><span>€ 500,00</span><span>Success</span><span>Credit Card</span></div>
-              <div class="row"><span>Amy March</span><span>-€ 250,00</span><span>Pending</span><span>Bank Transfer</span></div>
-              <div class="row"><span>Melissa Green</span><span>€ 780,00</span><span>Success</span><span>VISA</span></div>
+              <div class="row header"><strong>TYPE</strong><strong>AMOUNT</strong><strong>STATUS</strong><strong>METHOD</strong></div>
+              <div id="activityRows"></div>
             </article>
             <aside class="card card-mini">
               <h3>My Cards</h3>
               <div class="bank">
                 <strong>VISA •••• 2104</strong>
-                <span style="font-size:2rem;">€ 4.540,20</span>
+                <span id="cardBalance" style="font-size:2rem;">€ 0,00</span>
               </div>
             </aside>
           </section>
         </main>
       </div>
     </div>
+
+    <script src="../assets/dashboard.js"></script>
   </body>
 </html>
