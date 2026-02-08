@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuestra historia | Aurelia Fuego & Mar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header"><div class="header-inner"><a class="brand" href="../">Aurelia</a><nav class="nav"><a href="../">Inicio</a><a href="../menu/">Menú</a><a class="active" href="../about/">Nuestra historia</a><a href="../reservations/">Reservas</a></nav></div></header>
+
+    <section class="hero" style="min-height:68vh;">
+      <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?auto=format&fit=crop&w=1800&q=80')"></div>
+      <canvas id="three-hero-canvas" aria-hidden="true"></canvas>
+      <div class="parallax-layer two" data-rellax-speed="-2"></div>
+      <div class="hero-content">
+        <p class="eyebrow reveal">Equipo y filosofía</p>
+        <h1 class="reveal">Cocina honesta con mirada contemporánea</h1>
+        <p class="lead reveal">Aurelia nació de la unión entre técnicas francesas, producto mediterráneo y fuego controlado.</p>
+      </div>
+    </section>
+
+    <section class="section"><div class="section-inner split">
+      <div class="panel reveal"><img class="panel-image parallax-image" src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1400&q=80" alt="Equipo de cocina" /></div>
+      <div class="reveal">
+        <h2>Nuestra historia</h2>
+        <p>Desde 2019 trabajamos con una red de productores de proximidad: pescadores de costa, huertas regenerativas y pequeñas bodegas naturales.</p>
+        <p>La cocina abierta permite ver cada pase en directo. Buscamos precisión, calidez y una hospitalidad que se sienta personal.</p>
+      </div>
+    </div></section>
+
+    <section class="section"><div class="section-inner"><div class="grid">
+      <article class="card reveal"><h3>Chef Ejecutivo</h3><p>Marina Costa — enfoque en fondos, fermentaciones y cocina de temporada.</p></article>
+      <article class="card reveal"><h3>Sommelier</h3><p>Álvaro Vidal — selección de vinos de mínima intervención y maridajes por copa.</p></article>
+      <article class="card reveal"><h3>Dirección de sala</h3><p>Lucía Ferrer — ritmo de servicio y experiencia de hospitalidad elegante.</p></article>
+    </div></div></section>
+
+    <footer class="footer"><span>Miércoles a domingo · 19:00—00:00</span><a href="../reservations/">Reservar</a></footer>
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.6.2/dist/simpleParallax.min.js"></script>
+    <script src="../assets/script.js"></script>
+  </body>
+</html>

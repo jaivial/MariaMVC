@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurelia Fuego & Mar | Restaurante de autor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="./">Aurelia</a>
+        <nav class="nav">
+          <a class="active" href="./">Inicio</a>
+          <a href="./menu/">Menú</a>
+          <a href="./about/">Nuestra historia</a>
+          <a href="./reservations/">Reservas</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=80')"></div>
+      <canvas id="three-hero-canvas" aria-hidden="true"></canvas>
+      <div class="parallax-layer one" data-rellax-speed="2"></div>
+      <div class="parallax-layer two" data-rellax-speed="-2"></div>
+      <div class="hero-content">
+        <p class="eyebrow reveal">Restaurante de autor · Barcelona</p>
+        <h1 class="reveal">Fuego, mar y técnica contemporánea en cada servicio</h1>
+        <p class="lead reveal">Una propuesta inmersiva que combina cocina abierta, producto local y una estética editorial de lujo con animaciones sutiles y movimiento parallax.</p>
+        <div class="actions reveal">
+          <a class="btn" href="./reservations/">Reservar mesa</a>
+          <a class="btn alt" href="./menu/">Ver menú degustación</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner split">
+        <div class="reveal">
+          <p class="eyebrow">Concepto</p>
+          <h2>La experiencia completa del restaurante</h2>
+          <p>En Aurelia trabajamos con temporalidad real: carta corta, evolución semanal y maridajes pensados para resaltar texturas, acidez y profundidad.</p>
+          <p>El salón, la iluminación y la música acompañan el ritmo del menú para convertir la cena en un viaje sensorial coherente.</p>
+        </div>
+        <div class="panel reveal">
+          <img class="panel-image parallax-image" src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1400&q=80" alt="Interior del restaurante" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <p class="eyebrow reveal">Highlights</p>
+        <h2 class="reveal">Cuatro pilares de nuestra cocina</h2>
+        <div class="grid">
+          <article class="card reveal"><h3>Brasa fina</h3><p>Control preciso de humo y temperatura para proteína, vegetales y fermentados.</p></article>
+          <article class="card reveal"><h3>Mar de cercanía</h3><p>Pescado de lonja y curaciones ligeras para respetar el origen del producto.</p></article>
+          <article class="card reveal"><h3>Huerta viva</h3><p>Microtemporada en platos vegetales con fondos limpios y contrastes frescos.</p></article>
+          <article class="card reveal"><h3>Postres botánicos</h3><p>Dulce elegante con hierbas, cítricos y texturas crujientes.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <p class="eyebrow reveal">Journey</p>
+        <h2 class="reveal">Cómo evoluciona tu noche en Aurelia</h2>
+        <div class="timeline">
+          <article class="timeline-item reveal"><strong>Bienvenida</strong><p>Cóctel de autor y amuse-bouche estacional.</p></article>
+          <article class="timeline-item reveal"><strong>Menú principal</strong><p>Secuencia mar-tierra con fuego en directo.</p></article>
+          <article class="timeline-item reveal"><strong>Maridaje</strong><p>Vinos por copa y opciones sin alcohol premium.</p></article>
+          <article class="timeline-item reveal"><strong>Final dulce</strong><p>Postre botánico y petit fours para cerrar.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta reveal">
+      <p class="eyebrow">Reserva anticipada recomendada</p>
+      <h2>Vive Aurelia con menú a la carta o degustación de 9 pases</h2>
+      <p>Abrimos de miércoles a domingo. También ofrecemos mesas privadas para grupos y celebraciones gastronómicas.</p>
+      <a class="btn" href="./reservations/">Solicitar reserva</a>
+    </section>
+
+    <footer class="footer">
+      <span>© 2026 Aurelia Fuego & Mar</span>
+      <span>Gran Via 111 · Barcelona</span>
+    </footer>
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.6.2/dist/simpleParallax.min.js"></script>
+    <script src="assets/script.js"></script>
+  </body>
+</html>
