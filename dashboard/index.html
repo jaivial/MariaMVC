@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aurelia CRM Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/dashboard.css" />
+  </head>
+  <body>
+    <a class="toplink" href="../">← Back to Website</a>
+    <div class="app">
+      <div class="topbar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+      <div class="workspace">
+        <aside class="sidebar">
+          <div class="brand">Sequence</div>
+          <div class="navgroup">
+            <div class="navtitle">General</div>
+            <div class="item active">● Dashboard</div>
+            <div class="item">↔ Payment</div>
+            <div class="item">☰ Transaction</div>
+            <div class="item">▣ Cards</div>
+          </div>
+          <div class="navgroup">
+            <div class="navtitle">Support</div>
+            <div class="item">⌂ Capital</div>
+            <div class="item">◍ Vaults</div>
+            <div class="item">◫ Reports</div>
+            <div class="item">✦ Earn</div>
+          </div>
+        </aside>
+
+        <main class="main">
+          <div class="toolbar">
+            <input id="searchInput" class="search" type="search" placeholder="🔎 Search contact or method" />
+            <div class="filters">
+              <button class="pill" id="periodBtn" type="button">Last 30 days</button>
+              <button class="pill" id="exportBtn" type="button">Export JSON</button>
+            </div>
+          </div>
+
+          <section class="balance">
+            <div>
+              <span>Total Balance</span>
+              <h2 id="totalBalance">€ 0,00</h2>
+            </div>
+            <div class="actions">
+              <button class="btn green" id="toggleFormBtn" type="button">+ Add movement</button>
+              <button class="btn soft" id="seedBtn" type="button">Reset demo data</button>
+            </div>
+          </section>
+
+          <section class="card add-form" id="addFormWrap" hidden>
+            <h3>Add movement</h3>
+            <form id="movementForm" class="form-grid">
+              <input required name="name" placeholder="Contact name" />
+              <select name="type" required><option value="income">Income</option><option value="expense">Expense</option></select>
+              <input required name="amount" type="number" step="0.01" min="1" placeholder="Amount" />
+              <select name="method" required><option>Credit Card</option><option>Bank Transfer</option><option>VISA</option><option>Cash</option></select>
+              <button class="btn green" type="submit">Save</button>
+            </form>
+          </section>
+
+          <section class="card chart-card">
+            <div>
+              <div class="chart-title">Cash Flow</div>
+              <div id="bars" class="bars" aria-label="Cash flow bars"></div>
+            </div>
+            <div class="stat">
+              <div class="metric"><h4>Income</h4><p id="incomeMetric">€ 0,00</p></div>
+              <div class="metric"><h4>Expense</h4><p id="expenseMetric">€ 0,00</p></div>
+              <div class="metric"><h4>Net</h4><p id="netMetric">€ 0,00</p></div>
+            </div>
+          </section>
+
+          <section class="grid3" id="kpis"></section>
+
+          <section class="bottom">
+            <article class="card table">
+              <h3>Recent Activity</h3>
+              <div class="row header"><strong>TYPE</strong><strong>AMOUNT</strong><strong>STATUS</strong><strong>METHOD</strong></div>
+              <div id="activityRows"></div>
+            </article>
+            <aside class="card card-mini">
+              <h3>My Cards</h3>
+              <div class="bank">
+                <strong>VISA •••• 2104</strong>
+                <span id="cardBalance" style="font-size:2rem;">€ 0,00</span>
+              </div>
+            </aside>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="../assets/dashboard.js"></script>
+  </body>
+</html>
